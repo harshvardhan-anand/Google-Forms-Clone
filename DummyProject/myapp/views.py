@@ -7,3 +7,6 @@ def home(request):
 
 def profile(request):
     return HttpResponse('This is profile page')
+
+def new_home(request):
+    return HttpResponse('This is new homepage')
