@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load form_filters %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{form_data.form_data|lookup:'title'}}</h5>
+        <p class="card-text">{{form_data.form_data|lookup:'description'}}</p>
+    </div>
+</div>
+
+<form action="{% url 'forms:view_form' pk %}" method="post">
+{% csrf_token %}
+
+{% with form_data.form_data|lookup:'data' as questions %}
+
+    {% for questionID, questionData in questions.items  %}
+    <div class="card mt-2">
+        <div class="card-header fw-bold">
+            Question {{forloop.counter}}
+        </div>
+        <div class="card-body">
+            <div class="form-floating mb-2">
+                <p id="{{questionID}}" class='font-monospace fs-5'>{{questionData.questionText}}</p>
+            </div>
+            {% for option in questionData.options %}
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="{{questionID}}-{{forloop.counter}}" name="{{questionID}}" value={{option}}>
+                <label class="form-check-label" for="{{questionID}}-{{forloop.counter}}">
+                    {{option}}
+                </label>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+
+{% endwith %}
+
+<input class='mt-2' type="submit" value="Submit">
+</form>
+{% endblock content %}
+
+{% comment %} {% block script %}
+    <script src="response.js"></script>
+{% endblock script %} {% endcomment %}

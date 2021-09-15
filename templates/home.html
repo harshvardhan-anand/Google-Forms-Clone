@@ -1,0 +1,53 @@
+{% load form_filters %}
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Form</title>
+
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            text-align: left;
+            padding: 8px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav>FormsBase</nav>
+    <a href="{% url 'forms:create_form' %}"><button>Create Form</button></a>
+
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Updated On</th>
+            <th>Created On</th>
+            <th>View</th>
+        </tr>
+        {% for form in forms %}
+        {% comment %} {{form}} {% endcomment %}
+        {% if form.updated %}
+            <tr>
+                <td>{{form.form_data|lookup:"title"}}</td>
+                <td>{{form.updated}}</td>
+                <td>{{form.created}}</td>
+                <td><a href="{% url 'forms:update_form' form|lookup:'_id' %}" target='_blank'>Open in new tab</a></td>
+            </tr>
+        {% endif %}
+        {% endfor %}
+    </table>
+</body>
+
+</html>
