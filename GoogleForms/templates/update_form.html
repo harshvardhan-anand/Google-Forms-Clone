@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    
+    <form action="{% url 'forms:update_form' pk %}" method="post">
+        {% csrf_token %}
+        <label for="someID">Label 1</label>
+        <input type="text" name='inputText' id='someID'><br>
+        <label for="someID">Label 2</label>
+        <input type="text" name='inputText' id='someID'><br>
+        <input type="submit" value="Submit">
+    </form>
 {% endblock content %}
