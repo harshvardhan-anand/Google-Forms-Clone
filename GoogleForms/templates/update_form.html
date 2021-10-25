@@ -2,4 +2,27 @@
 
 {% block content %}
     
+<form action="{% url 'forms:update_form' pk %}" method="post" id='questionForm'>
+    {% csrf_token %}
+    <Button type='submit'>Save</Button>
+
+    <div class="card" id='form-description'>
+        <div class="card-header">
+            Title and Description
+        </div>
+        <div class="card-body">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="title" placeholder="title" name='title'>
+                <label for="title">Form Title</label>
+            </div>
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Description" id="description"
+                    name='description'></textarea>
+                <label for="description">Form Description</label>
+            </div>
+        </div>
+        <button type='button' id='addQuestion'>Add Question</button>
+    </div>
+
+
 {% endblock content %}

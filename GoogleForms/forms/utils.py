@@ -18,9 +18,6 @@ class Form:
         query = {
             '_id':ObjectId(pk)
         }
-        print(col.find(query))
-        print(type(col.find(query)))
-
         obj = col.find(query).next() # cursor
 
         return obj
