@@ -3,7 +3,7 @@ let count = 0;
 function addQuestion(IdOfClickedAddQuesButton, autoScroll=true) {
     let q_id = `question${count}` // question0
     let addQuestionButtonId = `addQByQ${q_id}` //addQByQquestion0
-    let addOptionButtonId = `${q_id}_addOpt` // question0_addOpt
+    let addOptionButtonId = `${q_id}_addOpt` // [question0, addOpt]
     let newNode = document.createElement("div");
     newNode.classList.add('card', 'mt-3')
     newNode.setAttribute('id', q_id)
@@ -42,3 +42,23 @@ function addQuestion(IdOfClickedAddQuesButton, autoScroll=true) {
 document.getElementById("addQuestion").addEventListener("click", function () {
     addQuestion("addQuestion")
 });
+
+function addOption(button_id) {
+    let q_id = button_id.split('_')[0]
+    let option_id = `option_${parseInt(Math.random() * 100000)}_${q_id}`
+    let node = document.createElement("div");
+    node.classList.add('form-check')
+    node.innerHTML = `
+        <input class="form-check-input" type="radio" id="${option_id}_radio" name="${q_id}">
+        <label class="form-check-label" for="${option_id}_radio">
+            <input class="form-control option" type="text" placeholder="Option" id='${option_id}'>
+        </label>
+    `
+    document.getElementById(`${q_id}_option`).appendChild(node); // Add option to Question
+    return option_id;
+}
+
+function deleteQuestion(button_id) {
+    let q_id = button_id.split('_')[0]
+    document.getElementById(`${q_id}`).remove(); // Remove Question
+}
