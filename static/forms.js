@@ -76,18 +76,16 @@ function deleteQuestion(button_id) {
 `
 In the database the information should be stored in this way - 
 {
-    id:{
-        title:'form title',
-        description:'form description',
-        data:{
-            question1:{
-                question:'the first question',
-                option:['options', 'of', 'first', 'question']
-            },
-            question2:{
-                question:'the 2nd question',
-                option:['options', 'of', '2nd', 'question']
-            }
+    title:"My First Form",
+    description:"My first description",
+    data:{
+        'question1':{
+            questionText:'This is Question 1',
+            options:['Option 1', 'Option 2', 'Option 3']
+        },
+        'question2':{
+            questionText:'This is Question 2',
+            options:['Option 1', 'Option 2', 'Option 3']
         }
     }
 }
