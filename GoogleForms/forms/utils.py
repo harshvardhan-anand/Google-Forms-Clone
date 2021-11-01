@@ -21,3 +21,15 @@ class Form:
         obj = col.find(query).next() # cursor
 
         return obj
+
+    def update(self, pk, form_data):
+        query = {'_id':ObjectId(pk)}
+        updated_value = {
+            '$set':{
+                'form_data':form_data['formData'],
+                'updated': timezone.now()
+            }
+        }
+
+        col.update_one(query, updated_value)
+        print('form_updated')

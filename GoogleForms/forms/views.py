@@ -22,6 +22,7 @@ def update_form(request, pk):
 
     if request.method == 'POST':
         form_data = json.loads(request.body)
+        form.update(pk, form_data)
         return JsonResponse({
             'saved':'OK'
         })
