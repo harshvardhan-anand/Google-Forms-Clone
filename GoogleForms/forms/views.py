@@ -1,7 +1,8 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse_lazy
-from django.http import Http404
+from django.http import Http404, JsonResponse
 from .utils import Form
+import json
 
 # Create your views here.
 
@@ -20,7 +21,10 @@ def create(request):
 def update_form(request, pk):
 
     if request.method == 'POST':
-        data = request.POST
+        form_data = json.loads(request.body)
+        return JsonResponse({
+            'saved':'OK'
+        })
         print(data)
 
     try:

@@ -62,3 +62,71 @@ function deleteQuestion(button_id) {
     let q_id = button_id.split('_')[0]
     document.getElementById(`${q_id}`).remove(); // Remove Question
 }
+
+`
+In the database the information should be stored in this way - 
+{
+    title:"My First Form",
+    description:"My first description",
+    data:{
+        'question1':{
+            questionText:'This is Question 1',
+            options:['Option 1', 'Option 2', 'Option 3']
+        },
+        'question2':{
+            questionText:'This is Question 2',
+            options:['Option 1', 'Option 2', 'Option 3']
+        }
+    }
+}
+`
+
+let form = document.getElementById('questionForm')
+
+form.addEventListener('submit', function(e){
+    e.preventDefault();
+    let children = form.children
+    let formData = {
+        title:children[2].querySelector('[name=title]').value,
+        description:children[2].querySelector('[name=description]').value,
+        data:function(){
+            let data = {}
+            if (children.length>4){
+                for (let i=3; i<children.length-1;i++){
+                    let options = [];
+                    let questionText = children[i].querySelector('.question').value
+                    let all_options = children[i].querySelector('.allOptions').children
+    
+                    for (let j=0; j<all_options.length;j++){
+                        let option = all_options[j].querySelector('.option').value
+                        options.push(option)
+                    }
+    
+                    data[`question${i-2}`] = {} // 3-2 = 1
+                    data[`question${i-2}`]['questionText'] = questionText;
+                    data[`question${i-2}`]['options'] = options;
+    
+                }
+            }
+            return data
+        }(),
+    };
+
+    console.log(formData)
+
+    fetch(form.action, {
+        method:'POST',
+        body:JSON.stringify({
+            formData:formData
+        }),
+        headers:{
+            "X-CSRFToken":get_csrftoken(document.cookie),
+        }
+    }).then(response=>response.json()).then(json=>console.log(json));
+    
+})
+
+function get_csrftoken(cookie){
+    let pat = /csrftoken=(\w+)(?:;?)/gm;
+    return pat.exec(cookie)[1];
+}
