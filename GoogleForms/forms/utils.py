@@ -33,3 +33,6 @@ class Form:
 
         col.update_one(query, updated_value)
         print('form_updated')
+
+    def findall(self):
+        return col.find().sort('updated', -1)

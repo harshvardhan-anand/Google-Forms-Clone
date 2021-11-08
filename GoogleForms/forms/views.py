@@ -12,7 +12,10 @@ def get_random_uuid():
     return 'my_simple_uuid'
 
 def home(request):
-    return render(request, 'home.html')
+    forms = form.findall()
+    return render(request, 'home.html', {
+        'forms':forms
+    })
 
 def create(request):
     pk = form.create()

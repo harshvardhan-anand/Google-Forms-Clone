@@ -9,5 +9,22 @@
 <body>
     <h1>FormsBase</h1>
     <a href="{% url 'forms:create' %}"><button>Create Form</button></a>
+
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Updated On</th>
+            <th>Created On</th>
+            <th>View</th>
+        </tr>
+    
+
+    {% for form in forms %}
+
+        {{form}}
+
+    {% endfor %}
+
+    </table>
 </body>
 </html>
