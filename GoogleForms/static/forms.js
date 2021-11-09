@@ -91,7 +91,7 @@ form.addEventListener('submit', function(e){
         description:children[2].querySelector('[name=description]').value,
         data:function(){
             let data = {}
-            if (children.length>4){
+            if (children.length>5){
                 for (let i=3; i<children.length-1;i++){
                     let options = [];
                     let questionText = children[i].querySelector('.question').value
