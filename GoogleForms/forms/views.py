@@ -40,3 +40,10 @@ def update_form(request, pk):
     except Exception as e:
         print(e)
         raise Http404('Form not found')
+
+def get_response_from_user(request, pk):
+    form_data = form.find(pk)
+    return render(request, "get_response_from_user.html",{
+        'pk':pk,
+        'form_data':form_data
+    })

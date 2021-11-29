@@ -2,6 +2,10 @@
 {% load static %}
 
 {% block content %}
+
+<h1>Update Form</h1>
+
+<a href="{% url 'forms:view_form' pk %}" target="_blank"><button>Share</button></a>
     
 <form action="{% url 'forms:update_form' pk %}" method="post" id='questionForm'>
     {% csrf_token %}
