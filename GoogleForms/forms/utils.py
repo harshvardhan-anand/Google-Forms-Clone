@@ -36,3 +36,10 @@ class Form:
 
     def findall(self):
         return col.find().sort('updated', -1)
+
+    def update_response(self, pk, response):
+        query = {'_id':ObjectId(pk)}
+        updated_value = {
+            '$inc':response
+        }
+        col.update_one(query, updated_value)

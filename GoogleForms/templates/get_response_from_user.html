@@ -10,7 +10,7 @@
 </div>
 
 
-<form action="" method='POST'>
+<form action="{% url 'forms:view_form' pk %}" method='POST'>
     {% csrf_token %}
 
     {% with form_data.form_data.data as questions %}

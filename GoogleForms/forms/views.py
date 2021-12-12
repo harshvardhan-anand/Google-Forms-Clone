@@ -42,8 +42,23 @@ def update_form(request, pk):
         raise Http404('Form not found')
 
 def get_response_from_user(request, pk):
-    form_data = form.find(pk)
-    return render(request, "get_response_from_user.html",{
-        'pk':pk,
-        'form_data':form_data
-    })
+    if request.method == 'POST':
+        cd = dict(request.POST)
+        del cd['csrfmiddlewaretoken']
+        response = {}
+        for key, value in cd.items():
+            print(key, value[0])
+            response.update({
+                f"responses.{key}.{value[0]}":1
+            })
+        form.update_response(pk, response)
+        return render(request, 'thankyou.html')
+    else:
+        try:
+            form_data = form.find(pk)
+            return render(request, "get_response_from_user.html",{
+                'pk':pk,
+                'form_data':form_data
+            })
+        except:
+            raise Http404('Form not found')
