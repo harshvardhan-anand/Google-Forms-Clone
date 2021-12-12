@@ -62,3 +62,9 @@ def get_response_from_user(request, pk):
             })
         except:
             raise Http404('Form not found')
+
+def responses(request, pk):
+    form_data = form.find(pk)
+    return render(request, 'responses.html', {
+        'form_data':form_data
+    })
