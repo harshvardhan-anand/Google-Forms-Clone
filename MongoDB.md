@@ -10,11 +10,11 @@
 6. Add New Path value as - `C:\Program Files\MongoDB\Server\5.0\bin`
 7. Start MongoDB server\
 	a. Open terminal\
-	b. Execute command mongod\
+	b. Execute command `mongod`\
 	c. To close the server use `ctrl+c`
 8. Open MongoDB compass
 9. Click on connect
-10. click on Create Database and fill the data.
+10. Click on Create Database and fill the data.
 
 # Study Resources
 1. PyMongo(Good one) - https://www.w3schools.com/python/python_mongodb_getstarted.asp
