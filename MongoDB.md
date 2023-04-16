@@ -7,7 +7,7 @@
 3. Create Folder `C:\data\db`
 4. Edit Environmental variable for **YOUR** account
 5. Go to Path key
-6. Add New Path value as - `C:\Program Files\MongoDB\Server\5.0\bin`
+6. Add New Path value as - `C:\Program Files\MongoDB\Server\6.0\bin`
 7. Start MongoDB server\
 	a. Open terminal\
 	b. Execute command `mongod`\
