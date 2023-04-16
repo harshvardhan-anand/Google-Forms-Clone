@@ -92,7 +92,7 @@ form.addEventListener('submit', function(e){
         data:function(){
             let data = {}
             if (children.length>5){
-                for (let i=3; i<children.length-1;i++){
+                for (let i=3; i<children.length-2;i++){
                     let options = [];
                     let questionText = children[i].querySelector('.question').value
                     let all_options = children[i].querySelector('.allOptions').children
